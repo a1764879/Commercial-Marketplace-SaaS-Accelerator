@@ -55,7 +55,6 @@ dotnet-ef migrations script `
 Write-host "## Generated migration script"
 
 Remove-Item -Path ../src/AdminSite/appsettings.Development.json
-Remove-Item -Path script.sql
 Write-host "#### Database Deployment complete ####"	
 
 

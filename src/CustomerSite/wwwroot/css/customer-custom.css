@@ -12,7 +12,7 @@
 }
 
 .cm-top-nav-bar {
-    background-color: #004578 !important;
+    background-color: #001A42 !important;
     margin-bottom: 0px;
     border: 0px;
     height:48px;
@@ -126,7 +126,7 @@
 
 .cm-button-default {
     color: #fff !important;
-    background-color: #004578;
+    background-color: #001A42;
     border-color: #2e6da4;
     display: inline-block;
     font-weight: 400;
@@ -157,12 +157,12 @@
         padding: 12px 20px;
         font-size: 18px;
         font-weight: bold;
-        color: #004578;
+        color: #001A42;
     }
 
 .cm-button-error {
     color: #fff;
-    background-color: #004578 !important;
+    background-color: #001A42 !important;
     border-color: #2e6da4;
     display: inline-block;
     font-weight: 400;
@@ -193,7 +193,7 @@
         padding: 12px 20px;
         font-size: 18px;
         font-weight: bold;
-        color: #004578;
+        color: #001A42;
     }
 
 .cm-button-success {
@@ -229,7 +229,7 @@
         padding: 12px 20px;
         font-size: 18px;
         font-weight: bold;
-        color: #004578;
+        color: #001A42;
     }
 
 .cm-button-danger {
@@ -265,7 +265,7 @@
         padding: 12px 20px;
         font-size: 18px;
         font-weight: bold;
-        color: #004578;
+        color: #001A42;
     }
 
 .cm-table {

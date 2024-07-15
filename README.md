@@ -38,7 +38,7 @@ The SaaS Accelerator is a production-ready solution designed to make it easier f
 🛠️ Stay in Control: A dedicated adminstrative portal for managing all your customer subscriptions.
 
 Transform your SaaS game. Leverage SaaS Accelerator now!
-
+F
 ## Description
 
 The project is implemented in .NET and uses the commercial marketplace billing system, including the [SaaS Fulfillment API (v2)](https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2) and [Marketplace Metering Service API](https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/marketplace-metering-service-apis). The SaaS Accelerator models how a typical SaaS platform interacts with the marketplace APIs to provision subscriptions for customers, enable logging, and manage commercial marketplace subscriptions. The SaaS Accelerator may be installed as-is or may be customized to support your requirements. 

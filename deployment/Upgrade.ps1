@@ -78,16 +78,17 @@ BEGIN
 	        VALUES (N'20221118045814_Baseline_v2', N'6.0.1'), (N'20221118203340_Baseline_v5', N'6.0.1'), (N'20221118211554_Baseline_v6', N'6.0.1');
 END;
 GO"
-$accessToken = az account get-access-token --resource https://database.windows.net/ --query accessToken --output tsv
 
-$ConnectionStringWithToken = "Server=$Server;Database=$Database;Authentication=Active Directory Access Token;AccessToken=$accessToken;"
+$ServerO = (Select-String -InputObject $ConnectionString -Pattern "Data Source=(.*?);" | ForEach-Object { $_.Matches.Groups[1].Value }).Trim()
+$DatabaseO = (Select-String -InputObject $ConnectionString -Pattern "Initial Catalog=(.*?);" | ForEach-Object { $_.Matches.Groups[1].Value }).Trim()
 
+$accessTokenO = az account get-access-token --resource https://database.windows.net/ --query accessToken --output tsv
 
 # Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -AccessToken $token
-Invoke-Sqlcmd -ConnectionString $ConnectionStringWithToken -query $compatibilityScript
+Invoke-Sqlcmd -ServerInstance $ServerO -Database $DatabaseO -AccessToken $accessTokenO -Query $compatibilityScript
 Write-host "## Ran compatibility script against database"
 # Invoke-Sqlcmd -inputFile script.sql -ServerInstance $Server -database $Database -Username $User -Password $Pass
-Invoke-Sqlcmd -inputFile script.sql -ConnectionString $ConnectionStringWithToken
+Invoke-Sqlcmd -ServerInstance $ServerO -Database $DatabaseO -AccessToken $accessTokenO -InputFile "script.sql"
 Write-host "## Ran migration against database"	
 
 Remove-Item -Path ../src/AdminSite/appsettings.Development.json

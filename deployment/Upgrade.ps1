@@ -78,10 +78,16 @@ BEGIN
 	        VALUES (N'20221118045814_Baseline_v2', N'6.0.1'), (N'20221118203340_Baseline_v5', N'6.0.1'), (N'20221118211554_Baseline_v6', N'6.0.1');
 END;
 GO"
+$accessToken = az account get-access-token --resource https://database.windows.net/ --query accessToken --output tsv
 
-Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -Username $User -Password $Pass
+$ConnectionStringWithToken = "ServerInstance=$Server;Database=$Database;Authentication=Active Directory Access Token;Access Token=$accessToken;"
+
+
+# Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -AccessToken $token
+Invoke-Sqlcmd -ConnectionString $ConnectionStringWithToken -query $compatibilityScript
 Write-host "## Ran compatibility script against database"
-Invoke-Sqlcmd -inputFile script.sql -ServerInstance $Server -database $Database -Username $User -Password $Pass
+# Invoke-Sqlcmd -inputFile script.sql -ServerInstance $Server -database $Database -Username $User -Password $Pass
+Invoke-Sqlcmd -inputFile script.sql -ConnectionString $ConnectionStringWithToken
 Write-host "## Ran migration against database"	
 
 Remove-Item -Path ../src/AdminSite/appsettings.Development.json

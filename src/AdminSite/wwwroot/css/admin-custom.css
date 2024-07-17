@@ -1,5 +1,5 @@
 ﻿body {
-    font-family: Segoe UI,Segoe UI Web,Segoe UI Symbol,Helvetica Neue,BBAlpha Sans,S60 Sans,Arial,sans-serif;
+    font-family: Open Sans, Segoe UI,Segoe UI Web,Segoe UI Symbol,Helvetica Neue,BBAlpha Sans,S60 Sans,Arial,sans-serif;
     color: black !important;
     font-size: 16px !important;
     height: 100%;
@@ -78,14 +78,10 @@
 }
 
 .cm-section-heading {
-    font-family: Segoe UI,Segoe UI Web,Segoe UI Symbol,Helvetica Neue,BBAlpha Sans,S60 Sans,Arial,sans-serif;
-    /*font-family: 'Segoe UI', 'sans-serif' !important;*/
+    font-family: Open Sans, Segoe UI,Segoe UI Web,Segoe UI Symbol,Helvetica Neue,BBAlpha Sans,S60 Sans,Arial,sans-serif;
     font-size: 30px;
     font-weight: 600;
     text-align: left;
-    /*background-color: #fff;*/
-    /*border-bottom: 4px solid #2180a6;*/
-    /*text-transform: uppercase;*/
     margin-bottom: 20px;
     line-height: 40px;
     color: black;

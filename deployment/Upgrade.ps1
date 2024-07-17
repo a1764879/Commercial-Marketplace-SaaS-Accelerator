@@ -80,7 +80,7 @@ END;
 GO"
 $accessToken = az account get-access-token --resource https://database.windows.net/ --query accessToken --output tsv
 
-$ConnectionStringWithToken = "ServerInstance=$Server;Database=$Database;Authentication=Active Directory Access Token;Access Token=$accessToken;"
+$ConnectionStringWithToken = "Server=$Server;Database=$Database;Authentication=Active Directory Access Token;Access Token=$accessToken;"
 
 
 # Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -AccessToken $token

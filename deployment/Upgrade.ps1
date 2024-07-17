@@ -37,8 +37,13 @@ $ConnectionString = az keyvault secret show `
 	--output tsv
 
 #Extract components from ConnectionString since Invoke-Sqlcmd needs them separately
-$Server = String-Between -source $ConnectionString -start "Data Source=" -end ";"
-$Database = String-Between -source $ConnectionString -start "Initial Catalog=" -end ";"
+# $Server = String-Between -source $ConnectionString -start "Data Source=" -end ";"
+# $Database = String-Between -source $ConnectionString -start "Initial Catalog=" -end ";"
+
+
+$Server = String-Between -source $ConnectionString -start "Server=" -end ";"
+$Database = String-Between -source $ConnectionString -start "Database=" -end ";"
+
 $User = String-Between -source $ConnectionString -start "User Id=" -end ";"
 $Pass = String-Between -source $ConnectionString -start "Password=" -end ";"
 
@@ -79,9 +84,13 @@ BEGIN
 END;
 GO"
 
-Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -Username $User -Password $Pass
+$accessToken = az account get-access-token --resource https://database.windows.net/ --query accessToken --output tsv
+
+# Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -AccessToken $token
+Invoke-Sqlcmd -ServerInstance $Server -Database $Database -AccessToken $accessToken -Query $compatibilityScript
 Write-host "## Ran compatibility script against database"
-Invoke-Sqlcmd -inputFile script.sql -ServerInstance $Server -database $Database -Username $User -Password $Pass
+# Invoke-Sqlcmd -inputFile script.sql -ServerInstance $Server -database $Database -Username $User -Password $Pass
+Invoke-Sqlcmd -ServerInstance $Server -Database $Database -AccessToken $accessToken -inputFile script.sql
 Write-host "## Ran migration against database"	
 
 Remove-Item -Path ../src/AdminSite/appsettings.Development.json

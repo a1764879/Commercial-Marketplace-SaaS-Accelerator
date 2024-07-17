@@ -37,8 +37,13 @@ $ConnectionString = az keyvault secret show `
 	--output tsv
 
 #Extract components from ConnectionString since Invoke-Sqlcmd needs them separately
-$Server = String-Between -source $ConnectionString -start "Data Source=" -end ";"
-$Database = String-Between -source $ConnectionString -start "Initial Catalog=" -end ";"
+# $Server = String-Between -source $ConnectionString -start "Data Source=" -end ";"
+# $Database = String-Between -source $ConnectionString -start "Initial Catalog=" -end ";"
+
+
+$Server = String-Between -source $ConnectionString -start "Server=" -end ";"
+$Database = String-Between -source $ConnectionString -start "Database=" -end ";"
+
 $User = String-Between -source $ConnectionString -start "User Id=" -end ";"
 $Pass = String-Between -source $ConnectionString -start "Password=" -end ";"
 

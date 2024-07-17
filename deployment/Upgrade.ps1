@@ -82,10 +82,10 @@ GO"
 $accessTokenO = az account get-access-token --resource https://database.windows.net/ --query accessToken --output tsv
 
 # Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -AccessToken $token
-Invoke-Sqlcmd -ServerInstance $Server -Database $Database -AccessToken $accessTokenO -Query $compatibilityScript
+Invoke-Sqlcmd -ServerInstance $Server -Database $Database -Authentication "Active Directory Default"
 Write-host "## Ran compatibility script against database"
 # Invoke-Sqlcmd -inputFile script.sql -ServerInstance $Server -database $Database -Username $User -Password $Pass
-Invoke-Sqlcmd -ServerInstance $Server -Database $Database -AccessToken $accessTokenO -InputFile "script.sql"
+Invoke-Sqlcmd -ServerInstance $Server -Database $Database -Authentication "Active Directory Default"
 Write-host "## Ran migration against database"	
 
 Remove-Item -Path ../src/AdminSite/appsettings.Development.json
